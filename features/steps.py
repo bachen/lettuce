@@ -1,22 +1,34 @@
-from lettuce import *
+#coding=utf-8
+from lettuce import *  
+from lettuce_webdriver.util import assert_false  
+from lettuce_webdriver.util import AssertContextManager  
+  
+def input_frame(browser, attribute):
+    xpath = "//input[@id='%s']" % attribute  
+    em = browser.find_element_by_xpath(xpath)  
+    return em
 
-@step('I have the number (\d+)')
-def have_the_number(step,number):
-	world.number = int(number)
+def click_button(browser,attribute):
+    xpath = "//input[@id='%s']" % attribute
+    em = browser.find_element_by_xpath(xpath)
+    return em
 
-@step('I compute its factorial')
-def compute_its_factorial(step):
-	world.number = factorial(world.number)
+#定位输入框输入关键字
+@step('I fill in field with id "(.*?)" with "(.*?)"')
+def baidu_text(step,field_name,value):
+    with AssertContextManager(step):  
+        text_field = input_frame(world.browser, field_name)  
+        #text_field.clear()  
+        text_field.send_keys(value)
 
-@step('I see the number (\d+)')
-def check_number(step,expected):
-	expected = int(expected)
-	assert world.number == expected, \
-	"Got %d " %world.number
+#点击“百度一下”按钮
+@step('I click id "(.*?)" once')
+def baidu_click(step,field_name):
+    with AssertContextManager(step):
+        click_field = click_button(world.browser,field_name)
+        click_field.click()
 
-def factorial(number):
-	number = int(number)
-	if (number == 0) or (number == 1):
-		return 1
-	else:
-		return number*factorial(number-1)
+#关闭浏览器
+@step('I close browser')
+def close_browser(step):
+    world.browser.quit()
