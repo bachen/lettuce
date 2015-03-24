@@ -3,7 +3,10 @@ test samples for lettuce
 
 setup:
 
-installation: pip install lettuce
+installation: 
+1.pip install lettuce
+2.pip install lettuce_webdriver
+3.pip install nose
 
 sample:
 
