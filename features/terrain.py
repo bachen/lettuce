@@ -4,4 +4,4 @@ import lettuce_webdriver.webdriver
  
 @before.all  
 def setup_browser():  
-    world.browser = webdriver.Firefox()
+    world.browser = webdriver.Chrome()
