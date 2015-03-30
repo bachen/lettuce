@@ -14,4 +14,5 @@ Scenario: login ximalaya website phone
     And I fill in field with xpath "//*[@id='userPwd']" with "cbl1989"
     And I click xpath "//input[@class='login_btn']" once
     Then I should see "NotVip" within 2 second
+    Then I go to "http://test.ximalaya.com/passport/logout"
     Then I close browser
