@@ -1,7 +1,7 @@
 Feature: Go to Ximalaya Website 
 Scenario: login ximalaya website email
   Given I go to "http://test.ximalaya.com/passport/login"  
-    When I fill in field with xpath "//*[@id='userAccount']" with "xxx@126.com"
+    When I fill in field with xpath "//*[@id='userAccount']" with "xxx@xxx.com"
     And I fill in field with xpath "//*[@id='userPwd']" with "xxx"
     And I click xpath "//input[@class='login_btn']" once
     Then I should see "Girl" within 2 second
